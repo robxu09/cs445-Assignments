@@ -48,11 +48,7 @@ public class Set<E> implements SetInterface<E>{
 		set = tempSet;
 		initialized = true;
 		for(int i=0;i<entries.length;i++){
-			try{
-                add(entries[i]);
-            }catch(SetFullException e){
-                e.getMessage();
-            }
+            add(entries[i]);
 			
 		}
 	}
@@ -94,11 +90,11 @@ public class Set<E> implements SetInterface<E>{
      * @param newEntry  The object to be added as a new entry
      * @return  true if the addition is successful; false if the item already is
      * in this set
-     * @throws SetFullException  If this set has a fixed capacity and does not
+     * //@throws SetFullException  If this set has a fixed capacity and does not
      * have the capacity to store an additional entry
      * @throws NullPointerException  If newEntry is null
      */
-    public boolean add(E newEntry) throws SetFullException, NullPointerException{
+    public boolean add(E newEntry) throws NullPointerException{
     	//contains will throw the null pointer exception
     	//System.out.println(newEntry);
 

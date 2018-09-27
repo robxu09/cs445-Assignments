@@ -27,14 +27,11 @@ public class Groceries implements GroceriesInterface {
      * @param item the item to add
      */
     public void addItem(GroceryItem item){
+        //change item will add input item quantity to existing one's quantity. returns -1 if not one already there
         int changedFrom = changeItem(item, item.getQuantity());
         if(changedFrom == -1){
             //does not contain. so add a new one
-            try{
-                groceryItems.add(item);
-            }catch(SetFullException e){
-                e.getMessage();
-            }
+            groceryItems.add(item);
             
         }
     }
@@ -52,6 +49,8 @@ public class Groceries implements GroceriesInterface {
      */
     public void removeItem(GroceryItem item){
         try{
+            //will "add" the opposite of item's quantity. aka subtract
+            //if it becomes 0 or negative, there will be an illegal argument exception
             int changedFrom = changeItem(item, (item.getQuantity()*-1));
         }catch(IllegalArgumentException e){
             //it is 0 or negative quantity
@@ -75,12 +74,7 @@ public class Groceries implements GroceriesInterface {
             GroceryItem toModify = groceryItems.remove(item);
             toReturn = toModify.getQuantity();
             toModify.setQuantity(item.getQuantity());
-            try{
-                groceryItems.add(toModify);
-            }catch(SetFullException e){
-                e.getMessage();
-                toReturn = -1;
-            }
+            groceryItems.add(item);
         }
         return toReturn;
 
@@ -93,12 +87,7 @@ public class Groceries implements GroceriesInterface {
             GroceryItem toModify = groceryItems.remove(item);
             toReturn = toModify.getQuantity();
             toModify.setQuantity(toModify.getQuantity()+amount);
-            try{
-                groceryItems.add(toModify);
-            }catch(SetFullException e){
-                e.getMessage();
-                toReturn = -1;
-            }
+            groceryItems.add(item);
         }
         return toReturn;
     }
