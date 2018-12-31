@@ -114,6 +114,9 @@ public class InfixExpressionEvaluator {
 
         // Return the result of the evaluation
         // TODO: Fix this return statement
+        if(operandStack.isEmpty()){
+        	throw new InvalidExpressionException("You need at least one operand.");
+        }
         return operandStack.pop();
     }
 
